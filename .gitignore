@@ -1,0 +1,12 @@
+build/
+.gradle/
+.settings
+.project
+.classpath
+*Thumbs.db
+/gradle.properties
+*.class
+
+
+bin/
+plugin/bin

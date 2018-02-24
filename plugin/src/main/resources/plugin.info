@@ -1,0 +1,9 @@
+# Part of the Chunk Stories Template Mod
+# Modify freely.
+
+name: Template-Plugin
+authors: XolioWare Interactive
+version: 1.0
+main: xyz.chunkstories.plugin.TemplatePlugin
+
+command: template

@@ -1,0 +1,6 @@
+// CHANGE THIS TO SUIT YOUR MOD
+rootProject.name = 'yourmodname'
+
+include rootProject.name + '-plugin' // Comment-out to de-activate the template plugin
+
+project(":"+rootProject.name + '-plugin').projectDir = file("plugin")

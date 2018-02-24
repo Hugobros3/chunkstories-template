@@ -1,0 +1,88 @@
+apply plugin: 'java'
+apply plugin: 'java-library'
+
+// CHANGE THIS TO SUIT YOUR MOD
+version = '1.0'
+description = "Your mod description"
+archivesBaseName = rootProject.name // Please edit settings.gradle to change your mod internal name!
+
+project.ext {
+	modFullName = "You Mod Name" // The displayed name of your mod, can contain spaces, special characters etc
+	csApiBuiltAgainst = '117' // Revision of the API we are based on
+	coreContentVersionBuiltAgainst = '126' // Revision of the core content we are based on
+}
+
+// DON'T TOUCH THE REST UNLESS YOU KNOW WHAT YOU ARE DOING
+
+repositories {
+	mavenLocal()
+    jcenter()
+	mavenCentral()
+	maven {
+		url "http://maven.xol.io/repository/public/"
+	}
+}
+
+subprojects {
+	ext {
+		csApiBuiltAgainst = rootProject.csApiBuiltAgainst
+		coreContentVersionBuiltAgainst = rootProject.coreContentVersionBuiltAgainst
+	}
+}
+
+dependencies {
+	compile group: 'io.xol.chunkstories', name: 'api', version: csApiBuiltAgainst
+	compile group: 'io.xol.chunkstories', name: 'core', version: coreContentVersionBuiltAgainst
+}
+
+task modTxt {
+
+	doLast {
+		def file = new File("$projectDir/res/mod.txt")
+		file.createNewFile()
+		file.text = """internalName: $archivesBaseName
+		name: $modFullName
+		version: ${project.version}
+		description: ${project.description}
+		"""
+	}
+}
+
+task mod(type: Zip) {
+    from 'res/'
+    from configurations.runtime.allArtifacts.files
+	
+	archiveName = "${archivesBaseName}.zip"
+	
+	dependsOn modTxt
+}
+
+task install(type: Copy) {
+	dependsOn mod
+
+	File csDir = null;
+	if(project.hasProperty('chunkStoriesDirectory')) {
+		csDir = new File(chunkStoriesDirectory);
+	}
+	else {
+		println 'Did not found a configured directory for the game files, using default one'
+		String appDataFolder = System.getProperty("user.dir");
+		if(System.getProperty("os.name").toLowerCase().startsWith("win"))
+			appDataFolder = System.getenv("APPDATA");
+		else if(System.getProperty("os.name").toLowerCase().startsWith("lin"))
+			appDataFolder = System.getProperty("user.home");
+		else if(System.getProperty("os.name").toLowerCase().startsWith("mac"))
+			appDataFolder = System.getProperty("user.home");
+	
+		csDir = new File(appDataFolder + "/.chunkstories");
+	}
+	
+	println csDir.getAbsolutePath()
+	
+	include '**/*.zip'
+	
+	include '**/*.jar'
+
+	from 'build/distributions/'
+	into csDir.getPath() + '/mods/';
+}

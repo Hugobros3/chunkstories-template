@@ -1,0 +1,6 @@
+# Here you assign entities their names and class. Any number of additional properties can be added too.
+
+#TODO
+#entity demo_entity
+#	class: xyz.chunkstories.template.entity.DemoEntity
+#end

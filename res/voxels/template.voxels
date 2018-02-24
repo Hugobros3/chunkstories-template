@@ -1,0 +1,5 @@
+voxel example_voxel
+	customClass: xyz.chunkstories.template.voxel.ExampleVoxel
+	opaque: true
+	texture: pepe_the_frog
+end

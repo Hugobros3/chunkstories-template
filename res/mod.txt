@@ -1,0 +1,5 @@
+internalName: yourmodname
+		name: You Mod Name
+		version: 1.0
+		description: Your mod description
+		

@@ -1,0 +1,26 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'java-library'
+
+version = rootProject.version
+description = 'Description of the plugin bundled with your mod'
+
+//REMEMBER TO MODIFY SRC/RESOURCES/PLUGIN.INFO !
+
+repositories {
+	mavenLocal();
+	mavenCentral();
+	maven {
+		url "http://maven.xol.io/repository/public/"
+	}
+}
+
+task pluginPackage(type: Zip) {
+	from configurations.runtime.allArtifacts.files
+}
+
+dependencies {
+	compile group: 'io.xol.chunkstories', name: 'api', version: rootProject.ext.csApiBuiltAgainst
+	compile group: 'io.xol.chunkstories', name: 'core', version: rootProject.ext.coreContentVersionBuiltAgainst
+	compile rootProject
+}
