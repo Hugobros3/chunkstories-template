@@ -8,8 +8,8 @@ archivesBaseName = rootProject.name // Please edit settings.gradle to change you
 
 project.ext {
 	modFullName = "You Mod Name" // The displayed name of your mod, can contain spaces, special characters etc
-	csApiBuiltAgainst = '117' // Revision of the API we are based on
-	coreContentVersionBuiltAgainst = '126' // Revision of the core content we are based on
+	csApiBuiltAgainst = '118' // Revision of the API we are based on
+	coreContentVersionBuiltAgainst = '127' // Revision of the core content we are based on
 }
 
 // DON'T TOUCH THE REST UNLESS YOU KNOW WHAT YOU ARE DOING
