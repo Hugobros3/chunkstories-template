@@ -3,3 +3,8 @@ voxel example_voxel
 	opaque: true
 	texture: pepe_the_frog
 end
+
+voxel teapot_example
+	mesh: ./voxels/blockmodels/teapot.dae
+	opaque: false
+end

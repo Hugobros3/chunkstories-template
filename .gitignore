@@ -7,6 +7,6 @@ build/
 /gradle.properties
 *.class
 
-
+*.blend1
 bin/
 plugin/bin
