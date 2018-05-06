@@ -10,3 +10,10 @@ build/
 *.blend1
 bin/
 plugin/bin
+
+# IntelliJ
+/.idea/
+/out/
+*.iml
+*.ipr
+*.iws
