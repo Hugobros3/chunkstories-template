@@ -1,0 +1,7 @@
+{
+    entities: {
+        suzanne: {
+            class: xyz.chunkstories.template.entity.ExampleEntity
+        }
+    }
+}

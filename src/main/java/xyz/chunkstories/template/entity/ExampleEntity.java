@@ -1,29 +1,47 @@
 package xyz.chunkstories.template.entity;
 
+import org.joml.Vector3d;
+import xyz.chunkstories.api.entity.Entity;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import io.xol.chunkstories.api.Location;
-import io.xol.chunkstories.api.entity.EntityBase;
-import io.xol.chunkstories.api.entity.EntityDefinition;
-import io.xol.chunkstories.api.rendering.RenderingInterface;
-import io.xol.chunkstories.api.rendering.entity.EntityRenderable;
-import io.xol.chunkstories.api.rendering.entity.EntityRenderer;
-import io.xol.chunkstories.api.rendering.entity.RenderingIterator;
-import io.xol.chunkstories.api.rendering.lightning.Light;
-import io.xol.chunkstories.api.rendering.mesh.RenderableMesh;
-import io.xol.chunkstories.api.rendering.shader.Shader;
-import io.xol.chunkstories.api.world.cell.CellData;
+import xyz.chunkstories.api.entity.EntityDefinition;
+import xyz.chunkstories.api.entity.traits.TraitRenderable;
+import xyz.chunkstories.api.graphics.representation.Model;
+import xyz.chunkstories.api.graphics.representation.ModelInstance;
+import xyz.chunkstories.api.graphics.representation.ModelPosition;
+import xyz.chunkstories.api.graphics.representation.PointLight;
+import xyz.chunkstories.api.graphics.systems.dispatching.RepresentationsGobbler;
+import xyz.chunkstories.api.world.World;
+import xyz.chunkstories.api.world.cell.CellData;
 
-public class ExampleEntity extends EntityBase implements EntityRenderable {
+import java.util.Collections;
 
-	int TTL = 6000;
+public class ExampleEntity extends Entity {
+
+	private int timeToLive = 6000;
 	
-	public ExampleEntity(EntityDefinition entityType, Location location) {
-		super(entityType, location);
+	public ExampleEntity(EntityDefinition definition, World world) {
+		super(definition, world);
+
+		new TraitRenderable<ExampleEntity>(this) {
+
+			Model suzanneModel = definition.getStore().parent().getModels().getOrLoadModel("models/example_suzanne/example_suzanne.dae");
+
+			@Override public void buildRepresentation(@org.jetbrains.annotations.NotNull RepresentationsGobbler representationsGobbler) {
+				float t = representationsGobbler.getFrame().getAnimationTimer() * 0.25f;
+
+				ModelPosition modelPosition = new ModelPosition(new Matrix4f().translate((float)getLocation().x, (float)getLocation().y, (float)getLocation().z));
+				ModelInstance suzanneInstance = new ModelInstance(suzanneModel, modelPosition, Collections.emptyMap(), -1, null);
+				representationsGobbler.acceptRepresentation(suzanneInstance, -1);
+
+				PointLight light = new PointLight(getLocation(), new Vector3d(Math.sin(t), Math.sin(t + 3.14159f * 2 / 3), Math.sin(t) + 3.14159f * 1 / 3));
+				representationsGobbler.acceptRepresentation(light, -1);
+			}
+		};
 	}
 
-	@Override
+	/*@Override
 	public EntityRenderer<ExampleEntity> getEntityRenderer() {
 		return new EntityRenderer<ExampleEntity>() {
 
@@ -73,16 +91,12 @@ public class ExampleEntity extends EntityBase implements EntityRenderable {
 			}
 			
 		};
-	}
+	}*/
 
 	@Override
 	public void tick() {
-		super.tick();
-		
-		TTL--;
-		if(TTL <= 0)
-			this.world.removeEntity(this);
+		timeToLive--;
+		if(timeToLive <= 0)
+			getWorld().removeEntity(this);
 	}
-	
-	
 }

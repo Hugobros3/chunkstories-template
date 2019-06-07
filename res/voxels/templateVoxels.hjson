@@ -1,0 +1,14 @@
+{
+    blocks: {
+        pepe_block: {
+            class: xyz.chunkstories.template.voxel.ExampleVoxel
+            opaque: true
+            texture: pepe_the_frog
+        }
+
+        teapot: {
+        	model: voxels/blockmodels/teapot.dae
+        	opaque: false
+        }
+    }
+}

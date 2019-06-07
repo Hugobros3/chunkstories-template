@@ -1,21 +1,21 @@
 package xyz.chunkstories.template.item;
 
-import io.xol.chunkstories.api.entity.Controller;
-import io.xol.chunkstories.api.entity.Entity;
-import io.xol.chunkstories.api.input.Input;
-import io.xol.chunkstories.api.item.Item;
-import io.xol.chunkstories.api.item.ItemDefinition;
-import io.xol.chunkstories.api.item.inventory.ItemPile;
-import io.xol.chunkstories.api.player.Player;
+import xyz.chunkstories.api.entity.Controller;
+import xyz.chunkstories.api.entity.Entity;
+import xyz.chunkstories.api.input.Input;
+import xyz.chunkstories.api.item.Item;
+import xyz.chunkstories.api.item.ItemDefinition;
+import xyz.chunkstories.api.item.inventory.ItemPile;
+import xyz.chunkstories.api.player.Player;
 
 public class ExampleItem extends Item {
 
-	final String customProperty;
+	private final String customProperty;
 	
 	public ExampleItem(ItemDefinition definition) {
 		super(definition);
 		
-		customProperty = definition.resolveProperty("customProperty", "caca");
+		customProperty = definition.resolveProperty("customProperty", "no imagination");
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ExampleItem extends Item {
 
 	@Override
 	public boolean onControllerInput(Entity owner, ItemPile itemPile, Input input, Controller controller) {
-		if(input.equals("mouse.left") && controller != null && controller instanceof Player) {
+		if(input.getName().equals("mouse.left") && controller instanceof Player) {
 			((Player)controller).sendMessage(customProperty);
 			return true;
 		}

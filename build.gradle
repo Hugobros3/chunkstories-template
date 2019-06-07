@@ -8,8 +8,8 @@ archivesBaseName = rootProject.name // Please edit settings.gradle to change you
 
 project.ext {
 	modFullName = "You Mod Name" // The displayed name of your mod, can contain spaces, special characters etc
-	csApiBuiltAgainst = '120' // Revision of the API we are based on
-	coreContentVersionBuiltAgainst = '128' // Revision of the core content we are based on
+	csApiBuiltAgainst = '202' // Revision of the API we are based on
+	coreContentVersionBuiltAgainst = '202' // Revision of the core content we are based on
 }
 
 // DON'T TOUCH THE REST UNLESS YOU KNOW WHAT YOU ARE DOING
@@ -31,8 +31,8 @@ subprojects {
 }
 
 dependencies {
-	compile group: 'io.xol.chunkstories', name: 'api', version: csApiBuiltAgainst
-	compile group: 'io.xol.chunkstories', name: 'core', version: coreContentVersionBuiltAgainst
+	compile group: 'xyz.chunkstories', name: 'api', version: csApiBuiltAgainst
+	compile group: 'xyz.chunkstories', name: 'core', version: coreContentVersionBuiltAgainst
 }
 
 task modTxt {

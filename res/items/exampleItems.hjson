@@ -1,0 +1,11 @@
+{
+    items: {
+        example_item: {
+            customClass: xyz.chunkstories.template.item.ExampleItem
+            width: 2
+            height: 2
+            maxStackSize: 69
+            customProperty: poop
+        }
+    }
+}
