@@ -1,0 +1,6 @@
+{
+	name: Template-Plugin
+	authors: XolioWare Interactive
+	version: 1.0
+	entryPoint: xyz.chunkstories.plugin.TemplatePlugin
+}

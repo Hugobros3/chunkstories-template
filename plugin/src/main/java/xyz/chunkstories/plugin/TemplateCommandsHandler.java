@@ -1,8 +1,8 @@
 package xyz.chunkstories.plugin;
 
-import io.xol.chunkstories.api.plugin.commands.Command;
-import io.xol.chunkstories.api.plugin.commands.CommandEmitter;
-import io.xol.chunkstories.api.plugin.commands.CommandHandler;
+import xyz.chunkstories.api.plugin.commands.Command;
+import xyz.chunkstories.api.plugin.commands.CommandEmitter;
+import xyz.chunkstories.api.plugin.commands.CommandHandler;
 
 public class TemplateCommandsHandler implements CommandHandler {
 

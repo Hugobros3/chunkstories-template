@@ -8,8 +8,8 @@ description = 'Description of the plugin bundled with your mod'
 //REMEMBER TO MODIFY SRC/RESOURCES/PLUGIN.INFO !
 
 repositories {
-	mavenLocal();
-	mavenCentral();
+	mavenLocal()
+	mavenCentral()
 	maven {
 		url "http://maven.xol.io/repository/public/"
 	}
@@ -20,7 +20,7 @@ task pluginPackage(type: Zip) {
 }
 
 dependencies {
-	compile group: 'io.xol.chunkstories', name: 'api', version: rootProject.ext.csApiBuiltAgainst
-	compile group: 'io.xol.chunkstories', name: 'core', version: rootProject.ext.coreContentVersionBuiltAgainst
+	compile group: 'xyz.chunkstories', name: 'api', version: rootProject.ext.csApiBuiltAgainst
+	compile group: 'xyz.chunkstories', name: 'core', version: rootProject.ext.coreContentVersionBuiltAgainst
 	compile rootProject
 }
