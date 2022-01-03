@@ -7,7 +7,7 @@
         }
 
         teapot: {
-        	model: blocks/models/teapot.dae
+        	model: voxels/blockmodels/teapot.dae
         	opaque: false
         }
     }
