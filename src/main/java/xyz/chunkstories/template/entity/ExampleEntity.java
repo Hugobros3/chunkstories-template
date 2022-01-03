@@ -26,7 +26,7 @@ public class ExampleEntity extends Entity {
 
 		new TraitRenderable<ExampleEntity>(this) {
 
-			Model suzanneModel = definition.getStore().parent().getModels().getOrLoadModel("models/example_suzanne/example_suzanne.dae");
+			Model suzanneModel = definition.getStore().getParent().getModels().getOrLoadModel("models/example_suzanne/example_suzanne.dae");
 
 			@Override public void buildRepresentation(@org.jetbrains.annotations.NotNull RepresentationsGobbler representationsGobbler) {
 				float t = representationsGobbler.getFrame().getAnimationTimer() * 0.25f;
@@ -97,6 +97,6 @@ public class ExampleEntity extends Entity {
 	public void tick() {
 		timeToLive--;
 		if(timeToLive <= 0)
-			getWorld().removeEntity(this);
+			getWorld().removeEntity(getId());
 	}
 }

@@ -1,6 +1,6 @@
 package xyz.chunkstories.template.item;
 
-import xyz.chunkstories.api.entity.Controller;
+import xyz.chunkstories.api.content.json.JsonKt;
 import xyz.chunkstories.api.entity.Entity;
 import xyz.chunkstories.api.input.Input;
 import xyz.chunkstories.api.item.Item;
@@ -14,19 +14,18 @@ public class ExampleItem extends Item {
 	
 	public ExampleItem(ItemDefinition definition) {
 		super(definition);
-		
-		customProperty = definition.resolveProperty("customProperty", "no imagination");
+
+		// TODO the new Kotlin API makes this significantly less ergonomic. Do we care to fix it ?
+		String s = JsonKt.getAsString(definition.getProperties().get("customProperty"));
+		if (s == null)
+			s = "no imagination";
+		customProperty = s;
 	}
 
 	@Override
-	public String getName() {
-		return super.getDefinition().store().parent().localization().getLocalizedString("template.example");
-	}
-
-	@Override
-	public boolean onControllerInput(Entity owner, ItemPile itemPile, Input input, Controller controller) {
-		if(input.getName().equals("mouse.left") && controller instanceof Player) {
-			((Player)controller).sendMessage(customProperty);
+	public boolean onPlayerInput(Entity owner, ItemPile itemPile, Input input, Player player) {
+		if(input.getName().equals("mouse.left")) {
+			player.sendMessage(customProperty);
 			return true;
 		}
 		

@@ -1,13 +1,13 @@
 {
     blocks: {
         pepe_block: {
-            class: xyz.chunkstories.template.voxel.ExampleVoxel
+            class: xyz.chunkstories.template.block.ExampleBlockType
             opaque: true
             texture: pepe_the_frog
         }
 
         teapot: {
-        	model: voxels/blockmodels/teapot.dae
+        	model: blocks/models/teapot.dae
         	opaque: false
         }
     }
